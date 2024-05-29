@@ -32,3 +32,11 @@ Data Cleaning for the dataset was done in Power Query as follows:
 
 ### Data Transformation
 To ensure the comprehensive satisfaction of customers, an additional column named Satisfaction Likert was created for referencing using the M-formula:
+
+          Table.AddColumn(#"Replaced Value", "Satisfaction Likert", each if [Satisfaction rating] = 1 then "Very Poor" else if [Satisfaction rating] = 2 then "Poor" else if [Satisfaction rating] = 3 then "Average" else if [Satisfaction rating] = 4 then "Good" else "Very Good")
+
+#### Here is a breakdown of what the formula does:
+For the dataset, we want to transform the satisfaction rating from number to text based on the Likert scale with the condition if Satisfaction rating = 1, it will display the rating as “Very poor”, respectively for each value of Satisfaction rating .
+
+### Data Modeling
+After the dataset was cleaned and transformed, it was ready to be modeled, but the dataset just included one table, so the Data Modeling is nothing much to modify.
