@@ -32,9 +32,25 @@ Data Cleaning for the dataset was done in Power Query as follows:
 - Unnecessary rows were removed
 
 ### Data Transformation
-To ensure the comprehensive satisfaction of customers, an additional column named Satisfaction Likert was created for referencing using the M-formula:
+- To ensure the comprehensive satisfaction of customers, an additional column named Satisfaction Likert was created for referencing using the M-formula:
 
           Table.AddColumn(#"Replaced Value", "Satisfaction Likert", each if [Satisfaction rating] = 1 then "Very Poor" else if [Satisfaction rating] = 2 then "Poor" else if [Satisfaction rating] = 3 then "Average" else if [Satisfaction rating] = 4 then "Good" else "Very Good")
+
+- To ensure comprehensive analysis I replaced the null values with '0'.
+
+          Table.ReplaceValue(#"Changed Type1",null,0,Replacer.ReplaceValue,{"Speed of answer in seconds"})
+
+- I had to add custom column to find the call duration by substracting the start time from end time.
+
+          Table.AddColumn(#"Changed Type2", "Call_Duration", each [AvgTalkDuration]-[Time])
+
+- I have added the custom column to translate the call duration into minutes.
+
+          Table.AddColumn(#"Added Custom1", "Custom", each let splitCallDuration = Splitter.SplitTextByDelimiter("-", QuoteStyle.None)(Text.From([Call_Duration], "en-US")) in Text.Combine({Text.Combine(List.Transform(splitCallDuration, each Text.Start(_, 2)), "("), "*60)+", Text.Middle(Text.From([Call_Duration], "en-US"), 4, 2)}), type text)
+
+- I have added the custom column to translate the text expression and evaluate it.
+
+          Table.AddColumn(#"Renamed Columns3", "Custom", each Expression.Evaluate([Call_Duration_Text]))
 
 #### Here is a breakdown of what the formula does:
 For the dataset, we want to transform the satisfaction rating from number to text based on the Likert scale with the condition if Satisfaction rating = 1, it will display the rating as “Very poor”, respectively for each value of Satisfaction rating .
