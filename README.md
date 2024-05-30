@@ -1,5 +1,5 @@
 # Call Center Analysis | Pwc Switzerland Power BI Virtual Case Experience
-![PWC_Logo](https://github.com/s-narmada/Call-Center-Analysis/assets/58018941/1db8e82f-7a32-40ad-a16d-fb52d51d7fc5)
+![pwc logo1](https://github.com/s-narmada/Call-Center-Analysis/assets/58018941/83ef8ce5-6f0b-4be5-9854-2cf212f5b343)
 
 ## Dashboard Link :
 https://app.powerbi.com/groups/me/reports/741f1191-abfb-4a43-beaf-5fb0bbc3a977/cb20746e83dc170ca517?experience=power-bi&bookmarkGuid=47783e82e8d3d69e247e
